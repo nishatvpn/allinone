@@ -321,8 +321,8 @@ firewall-cmd --list-services --zone=trusted
 firewall-cmd --add-masquerade
 firewall-cmd --permanent --add-masquerade
 firewall-cmd --query-masquerade
-firewall-cmd --permanent --direct --passthrough ipv4 -t nat -A POSTROUTING -s 10.8.0.0/24 -o $NIC -j MASQUERADE
-firewall-cmd --permanent --direct --passthrough ipv4 -t nat -A POSTROUTING -s 10.9.0.0/24 -o $NIC -j MASQUERADE
+firewall-cmd --permanent --direct --passthrough ipv4 -t nat -A POSTROUTING -s 10.8.0.0/24 -o "$NIC" -j MASQUERADE
+firewall-cmd --permanent --direct --passthrough ipv4 -t nat -A POSTROUTING -s 10.9.0.0/24 -o "$NIC" -j MASQUERADE
 firewall-cmd --zone=public --permanent --add-port=8118/tcp # Privoxy
 firewall-cmd --zone=public --permanent --add-port=7777/tcp # Magic Proxy
 firewall-cmd --zone=public --permanent --add-port=8888/tcp # Magic Proxy
@@ -610,7 +610,7 @@ clear
 apt-get install stunnel4 -y
 wget -O /etc/stunnel/stunnel.pem "https://raw.githubusercontent.com/nishatvpn/allinone/main/stunnel.pem"
 wget -O /etc/stunnel/stunnel.conf "https://raw.githubusercontent.com/nishatvpn/allinone/main/stunnel.conf"
-sed -i $MYIP2 /etc/stunnel/stunnel.conf
+sed -i "$MYIP2" /etc/stunnel/stunnel.conf
 sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 service stunnel4 restart
 
@@ -629,10 +629,10 @@ cd /root/
 touch check.sh
 echo "#!/bin/bash
 
-memfree=`cat /proc/meminfo | grep MemFree | awk '{print $2}'`;
+memfree=$(cat /proc/meminfo | grep MemFree | awk '{print $2}');
 tostop=3000000
 
-if [ "$memfree" -lt "$tostop" ];
+if [ ""$memfree"" -lt ""$tostop"" ];
 then
   echo 'Good shape';
 else
