@@ -1,9 +1,10 @@
 #!/bin/bash
 #OS Version Ubuntu 16
 #SSH OVPN SOCKS AUTO SCRIPT
-#Build By SNFX Net Solution
+#Build By NISHAT SOFTWARE Solution
 
-NAMEVPN="VPN INFO";
+NAMEVPN="NishatSoft
+";
 WEBSCRIPT="bwh.panel-vpn.biz";
 DBHOST="174.138.183.243";
 DBNAME="abolirez_vp";
